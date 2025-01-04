@@ -15,6 +15,8 @@ sudo apt install -y apache2 \
                  php-xml \
                  php-zip
 
+
+
 # Start and enable Apache and MySQL services
 sudo systemctl start apache2
 sudo systemctl enable apache2

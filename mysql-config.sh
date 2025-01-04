@@ -16,11 +16,13 @@ fi
 
 echo "Starting WordPress database setup..."
 
-sudo mysql_secure_installation
-
-sudo mysql -u root -p$DB_PASS <<EOF
-CREATE DATABASE $DB_NAME;
-CREATE USER '$DB_USER'@'$USER_HOST' IDENTIFIED BY '$DB_PASS';
-GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'$USER_HOST';
+# Automate MySQL secure installation
+sudo mysql --defaults-file=/dev/null <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
+DELETE FROM mysql.user WHERE User='';
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
 FLUSH PRIVILEGES;
 EOF
+
+echo "MySQL configuration completed successfully."
