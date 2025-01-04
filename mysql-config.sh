@@ -11,6 +11,14 @@ if ! systemctl is-active --quiet mysql; then
     exit 1
 fi
 
+echo "Waiting for MySQL to be ready..."
+until mysqladmin ping -h "127.0.0.1" --silent; do
+    echo "MySQL is not ready. Retrying in 2 seconds..."
+    sleep 2
+done
+echo "MySQL is ready!"
+
+
 # Secure MySQL setup
 echo "Securing MySQL..."
 sudo mysql --defaults-file=/dev/null --user=root <<EOF
