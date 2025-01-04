@@ -16,6 +16,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Set variables
+        run: chmod +x ./variables.sh && ./variables.sh
+
       - name: Make Script Executable
         run: chmod +x ./wp-install.sh
 

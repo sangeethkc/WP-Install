@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# Variables
-DB_NAME="wordpress_db"
-DB_USER="wordpress_user"
-DB_PASS="securepassword"
-WP_DIR="/var/www/html/wordpress"
-APACHE_CONF="/etc/apache2/sites-available/wordpress.conf"
-DOMAIN="your_domain.com"  # Replace with your domain or IP
-
+source variables.sh
 # Update package list and install necessary packages
 sudo apt update
 sudo apt install -y apache2 mysql-server php php-mysql libapache2-mod-php php-cli php-curl php-zip php-xml php-mbstring curl tar
