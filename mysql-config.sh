@@ -23,7 +23,7 @@ echo "MySQL is ready!"
 echo "Securing MySQL..."
 sudo mysql --defaults-file=/dev/null --user=root <<EOF
 -- Use mysql_native_password for the root user
-ALTER USER 'root'@'$DB_HOST' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
+ALTER USER 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
 FLUSH PRIVILEGES;
 EOF
 
