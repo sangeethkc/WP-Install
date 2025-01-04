@@ -16,12 +16,14 @@ fi
 
 echo "Starting WordPress database setup..."
 
-sudo mysql -u root -e "SELECT user, host, plugin FROM mysql.user WHERE user = 'root';"
+sudo mysql -u root -p
 
-sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root123';"
-sudo mysql -u root -e "FLUSH PRIVILEGES;"
+# sudo mysql -u root -e "SELECT user, host, plugin FROM mysql.user WHERE user = 'root';"
 
-sudo mysql -u root -p'root123' -e "CREATE DATABASE $DB_NAME;"
+# sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root123';"
+# sudo mysql -u root -e "FLUSH PRIVILEGES;"
+
+# sudo mysql -u root -p'root123' -e "CREATE DATABASE $DB_NAME;"
 
 
 # # Secure MySQL installation (automate the 'mysql_secure_installation' steps)

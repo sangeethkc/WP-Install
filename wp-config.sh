@@ -3,9 +3,9 @@ source variables.sh
 
 # Create WordPress wp-config.php with database settings
 sudo cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
-sudo sed -i "s/database_name_here/$DB_NAME/" $WP_DIR/wp-config.php
-sudo sed -i "s/username_here/$DB_USER/" $WP_DIR/wp-config.php
-sudo sed -i "s/password_here/$DB_PASS/" $WP_DIR/wp-config.php
+sudo sed -i "s/$DB_NAME/" $WP_DIR/wp-config.php
+sudo sed -i "s/$DB_USER/" $WP_DIR/wp-config.php
+sudo sed -i "s/$DB_PASS/" $WP_DIR/wp-config.php
 
 
 # Generate and set unique authentication keys and salts
