@@ -4,4 +4,4 @@ DB_USER="root"
 DB_PASS="root123"
 WP_DIR="/var/www/html/wordpress"
 APACHE_CONF="/etc/apache2/sites-available/wordpress.conf"
-DOMAIN="wp.sangeeth.cloud"  # Replace with your domain or IP
+DOMAIN="resume.sangeeth.cloud"  # Replace with your domain or IP

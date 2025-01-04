@@ -16,7 +16,13 @@ fi
 
 echo "Starting WordPress database setup..."
 
-sudo mysql -u root -p
+sudo mysql -u root <<EOF
+ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_PASS';
+DROP DATABASE IF EXISTS $DB_NAME;
+DELETE FROM mysql.db WHERE Db='$DB_NAME' OR Db='$DB_NAME\\_%';
+FLUSH PRIVILEGES;
+EOF
+
 
 # sudo mysql -u root -e "SELECT user, host, plugin FROM mysql.user WHERE user = 'root';"
 
