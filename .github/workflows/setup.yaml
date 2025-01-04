@@ -25,8 +25,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: root123
           MYSQL_DATABASE: wordpress_db
-          MYSQL_USER: root
-          MYSQL_PASSWORD: root123
+
 
     steps:
       - name: Checkout Repository
