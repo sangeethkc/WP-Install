@@ -17,10 +17,25 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set variables
-        run: chmod +x ./variables.sh && ./variables.sh
+        run: sudo chmod +x ./variables.sh && ./variables.sh
 
-      - name: Make Script Executable
-        run: chmod +x ./wp-install.sh
+      - name: Update package list and enable Apache and MySQL services
+        run: sudo chmod +x ./update-packages.sh && ./update-packages.sh
+
+      - name: MySQL Configuration
+        run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
+
+      - name: Download and extract WordPress
+        run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
+
+      - name: Create Apache virtual host configuration
+        run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
+
+      - name: Enable Apache rewrite module and site configuration
+        run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
+
+      - name: Create WordPress wp-config.php with database settings
+        run: sudo chmod +x ./wp-config.sh && ./wp-config.sh
 
       - name: Run WordPress Installation Script
-        run: sudo ./wp-install.sh
+        run: sudo chmod +x ./wp-install.sh && ./wp-install.sh
