@@ -22,8 +22,8 @@ jobs:
       - name: Update package list and enable Apache and MySQL services
         run: sudo chmod +x ./update-packages.sh && ./update-packages.sh
 
-      # - name: MySQL Configuration
-      #   run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
+      - name: MySQL Configuration
+        run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
 
       - name: Create WordPress database and user
         run: chmod +x ./create-db.sh && ./create-db.sh

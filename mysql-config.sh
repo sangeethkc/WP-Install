@@ -21,10 +21,10 @@ echo "MySQL is ready!"
 
 # Secure MySQL setup
 echo "Securing MySQL..."
-sudo mysql -u root -p$DB_PASS <<EOF
--- Use mysql_native_password for the root user
-ALTER USER 'root'@'127.0.0.1' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
-FLUSH PRIVILEGES;
+sudo mysql <<EOF
+CREATE USER '$DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
+GRANT ALL ON *.* TO '$DB_USER'@'localhost' WITH GRANT OPTION;
+quit;
 EOF
 
 # GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password';
