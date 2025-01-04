@@ -12,21 +12,6 @@ jobs:
   install-wordpress:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-        env:
-          MYSQL_ROOT_PASSWORD: root123
-          MYSQL_DATABASE: wordpress_db
-
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -37,29 +22,23 @@ jobs:
       - name: Update package list and enable Apache and MySQL services
         run: sudo chmod +x ./update-packages.sh && ./update-packages.sh
 
-      - name: MySQL Configuration
-        env:
-          DB_PASS: root123
-        run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
+      # - name: MySQL Configuration
+      #   run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
 
       - name: Create WordPress database and user
-        env:
-          DB_PASS: root123
         run: chmod +x ./create-db.sh && ./create-db.sh
 
-      # - name: Download and extract WordPress
-      #   run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
+      - name: Download and extract WordPress
+        run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
 
-      # - name: Create Apache virtual host configuration
-      #   run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
+      - name: Create Apache virtual host configuration
+        run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
 
-      # - name: Enable Apache rewrite module and site configuration
-      #   run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
+      - name: Enable Apache rewrite module and site configuration
+        run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
 
-      # - name: Create WordPress wp-config.php with database settings
-        # env:
-          # DB_PASS: root123
-      #   run: sudo chmod +x ./wp-config.sh && ./wp-config.sh
+      - name: Create WordPress wp-config.php with database settings
+        run: sudo chmod +x ./wp-config.sh && ./wp-config.sh
 
-      # - name: Run WordPress Installation Script
-      #   run: sudo chmod +x ./wp-install.sh && ./wp-install.sh
+      - name: Run WordPress Installation Script
+        run: sudo chmod +x ./wp-install.sh && ./wp-install.sh
