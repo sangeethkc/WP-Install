@@ -1,3 +1,7 @@
+#!/bin/bash
+
+source variables.sh
+
 # Secure MySQL installation (automate the 'mysql_secure_installation' steps)
 sudo mysql -e "UPDATE mysql.user SET Password=PASSWORD('$DB_PASS') WHERE User='root';"
 sudo mysql -e "DELETE FROM mysql.user WHERE User='';"
