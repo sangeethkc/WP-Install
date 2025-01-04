@@ -1,3 +1,6 @@
+#!/bin/bash
+source variables.sh
+
 # Create Apache virtual host configuration
 sudo bash -c "cat > $APACHE_CONF <<EOF
 <VirtualHost *:80>

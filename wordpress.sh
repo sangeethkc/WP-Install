@@ -1,3 +1,6 @@
+#!/bin/bash
+source variables.sh
+
 # Download and extract WordPress
 sudo mkdir -p $WP_DIR
 curl -L https://wordpress.org/latest.tar.gz | sudo tar -xz --strip-components=1 -C $WP_DIR

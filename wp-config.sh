@@ -1,3 +1,6 @@
+#!/bin/bash
+source variables.sh
+
 # Create WordPress wp-config.php with database settings
 sudo cp $WP_DIR/wp-config-sample.php $WP_DIR/wp-config.php
 sudo sed -i "s/database_name_here/$DB_NAME/" $WP_DIR/wp-config.php
