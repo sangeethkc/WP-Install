@@ -16,19 +16,19 @@ fi
 
 echo "Starting WordPress database setup..."
 
-# Create database and user
-mysql -u $DB_USER -p <<EOF
-CREATE DATABASE IF NOT EXISTS $DB_NAME;
-CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
-GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
-    ON $DB_NAME.*
-    TO '$DB_USER'@'localhost';
-FLUSH PRIVILEGES;
-EOF
+sudo mysql -u root -e "SELECT user, host, plugin FROM mysql.user WHERE user = 'root';"
 
-# Check if the last command was successful
-if [ $? -eq 0 ]; then
-    echo "WordPress database setup completed successfully!"
-else
-    echo "An error occurred while setting up the database."
-fi
+sudo mysql -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root123';"
+sudo mysql -u root -e "FLUSH PRIVILEGES;"
+
+sudo mysql -u root -p'root123' -e "CREATE DATABASE $DB_NAME;"
+
+
+# # Secure MySQL installation (automate the 'mysql_secure_installation' steps)
+# sudo mysql -e "UPDATE mysql.user SET Password=PASSWORD('$DB_PASS') WHERE User='root';"
+# sudo mysql -e "DELETE FROM mysql.user WHERE User='';"
+# sudo mysql -e "DROP DATABASE IF EXISTS test;"
+# sudo mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
+# sudo mysql -e "FLUSH PRIVILEGES;"
+
+echo "MySQL configuration completed successfully."
