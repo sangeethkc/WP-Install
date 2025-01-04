@@ -25,6 +25,9 @@ jobs:
       - name: MySQL Configuration
         run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
 
+      - name: Create WordPress database and user
+        run: chmod +x ./create-db.sh && ./create-db.sh
+
       - name: Download and extract WordPress
         run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
 
