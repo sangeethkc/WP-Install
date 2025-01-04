@@ -28,17 +28,17 @@ jobs:
       - name: Create WordPress database and user
         run: chmod +x ./create-db.sh && ./create-db.sh
 
-      - name: Download and extract WordPress
-        run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
+      # - name: Download and extract WordPress
+      #   run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
 
-      - name: Create Apache virtual host configuration
-        run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
+      # - name: Create Apache virtual host configuration
+      #   run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
 
-      - name: Enable Apache rewrite module and site configuration
-        run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
+      # - name: Enable Apache rewrite module and site configuration
+      #   run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
 
-      - name: Create WordPress wp-config.php with database settings
-        run: sudo chmod +x ./wp-config.sh && ./wp-config.sh
+      # - name: Create WordPress wp-config.php with database settings
+      #   run: sudo chmod +x ./wp-config.sh && ./wp-config.sh
 
-      - name: Run WordPress Installation Script
-        run: sudo chmod +x ./wp-install.sh && ./wp-install.sh
+      # - name: Run WordPress Installation Script
+      #   run: sudo chmod +x ./wp-install.sh && ./wp-install.sh

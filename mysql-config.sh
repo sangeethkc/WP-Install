@@ -5,24 +5,23 @@ source variables.sh
 # restart mysql service
 sudo systemctl restart mysql
 
-# check if mysql is installed
-if ! command -v mysql &> /dev/null; then
-    echo "MySQL is not installed. Please install MySQL before running this script."
+# Check if MySQL is running
+if ! systemctl is-active --quiet mysql; then
+    echo "MySQL service failed to start. Exiting."
     exit 1
 fi
 
-# check if mysql is running
-if ! sudo systemctl is-active mysql &> /dev/null; then
-    echo "MySQL is not running. Please start MySQL before running this script."
-    exit 1
-fi
-
-echo "Starting WordPress database setup..."
-
-# Switch MySQL root authentication to use password
-sudo mysql --defaults-file=/dev/null <<EOF
+# Secure MySQL and set root password
+sudo mysql --defaults-file=/dev/null --user=root <<EOF
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
 FLUSH PRIVILEGES;
 EOF
+
+# Check if root password setup was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to configure MySQL root user. Exiting."
+    exit 1
+fi
+
 
 echo "MySQL configuration completed successfully."
