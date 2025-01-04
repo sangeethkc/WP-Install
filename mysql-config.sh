@@ -14,10 +14,20 @@ if ! sudo systemctl is-active mysql &> /dev/null; then
     exit 1
 fi
 
-# Secure MySQL installation (automate the 'mysql_secure_installation' steps)
-sudo mysql -e "UPDATE mysql.user SET Password=PASSWORD('$DB_PASS') WHERE User='root';"
-sudo mysql -e "DELETE FROM mysql.user WHERE User='';"
-sudo mysql -e "DROP DATABASE IF EXISTS test;"
-sudo mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+echo "Starting WordPress database setup..."
 
+# Create database and user
+mysql -u $DB_USER -p <<EOF
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+    ON $DB_NAME.*
+    TO '$DB_USER'@'localhost';
+FLUSH PRIVILEGES;
+EOF
+
+# Check if the last command was successful
+if [ $? -eq 0 ]; then
+    echo "WordPress database setup completed successfully!"
+else
+    echo "An error occurred while setting up the database."

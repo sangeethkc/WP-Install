@@ -15,3 +15,5 @@ sudo bash -c "cat > $APACHE_CONF <<EOF
     CustomLog \${APACHE_LOG_DIR}/wordpress_access.log combined
 </VirtualHost>
 EOF"
+
+echo "Apache virtual host configuration created successfully."
