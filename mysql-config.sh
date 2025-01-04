@@ -31,3 +31,4 @@ if [ $? -eq 0 ]; then
     echo "WordPress database setup completed successfully!"
 else
     echo "An error occurred while setting up the database."
+fi
