@@ -1,19 +1,19 @@
 # Update package list and install necessary packages
 sudo apt update
 sudo apt install -y apache2 \
-                 ghostscript \
-                 libapache2-mod-php \
                  mysql-server \
-                 php \
-                 php-bcmath \
-                 php-curl \
-                 php-imagick \
-                 php-intl \
-                 php-json \
                  php-mbstring \
-                 php-mysql \
-                 php-xml \
-                 php-zip
+                 php-mysql
+                #  ghostscript \
+                #  libapache2-mod-php \
+                #  php \
+                #  php-bcmath \
+                #  php-curl \
+                #  php-imagick \
+                #  php-intl \
+                #  php-json \
+                #  php-xml \
+                #  php-zip
 
 
 

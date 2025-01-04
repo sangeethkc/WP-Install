@@ -11,17 +11,20 @@ if ! systemctl is-active --quiet mysql; then
     exit 1
 fi
 
-# Secure MySQL and set root password
+# Secure MySQL setup
+echo "Securing MySQL..."
 sudo mysql --defaults-file=/dev/null --user=root <<EOF
+-- Use mysql_native_password for the root user
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
 FLUSH PRIVILEGES;
 EOF
 
-# Check if root password setup was successful
+
+# Check if MySQL root password was set successfully
 if [ $? -ne 0 ]; then
     echo "Failed to configure MySQL root user. Exiting."
     exit 1
 fi
-
+echo "MySQL root user configured successfully."
 
 echo "MySQL configuration completed successfully."
