@@ -16,12 +16,30 @@ fi
 
 echo "Starting WordPress database setup..."
 
-mysql -u root -p$DB_PASS <<EOF
-CREATE DATABASE $DB_NAME;
-CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
-GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
-FLUSH PRIVILEGES;
-EOF
+read -p "MySQL server superior username. E.g. root: " DB_USER
+read -p "MySQL server superior password: " DB_PASS
+
+if [ -z "$DB_USER" ]
+then
+  DB_USER="root"
+fi
+
+if [ -z "$DB_PASS" ]
+then
+  DB_PASS="root123"
+fi
+
+
+mysql -h $DB_HOST -u $DB_USER -p$DB_PASS <<SHELL
+  create user '$DB_USER'@'$USER_HOST' identified by '$DB_PASS';
+  create database if not exists $DB_NAME;
+  grant alter,create,delete,drop,index,lock tables,insert,select,update on $DB_NAME.* to '$DB_USER'@'$USER_HOST';
+  flush privileges;
+  quit
+SHELL
+
+# Database created.
+echo -e "\033[32mSuccess\033[0m: Database has been created successfully!"
 
 
 # sudo mysql -u root -e "SELECT user, host, plugin FROM mysql.user WHERE user = 'root';"
@@ -39,4 +57,4 @@ EOF
 # sudo mysql -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
 # sudo mysql -e "FLUSH PRIVILEGES;"
 
-echo "MySQL configuration completed successfully."
+# echo "MySQL configuration completed successfully."
