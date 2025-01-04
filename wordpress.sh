@@ -1,15 +1,18 @@
 #!/bin/bash
 source variables.sh
 
-# Download and extract WordPress
-sudo mkdir -p $WP_DIR
-curl -L https://wordpress.org/latest.tar.gz | sudo tar -xz --strip-components=1 -C $WP_DIR
 
 # check if wordpress is installed
 if [ -d "$WP_DIR" ]; then
     echo "WordPress is already installed."
     exit 0
 fi
+
+
+# Download and extract WordPress
+sudo mkdir -p $WP_DIR
+curl -L https://wordpress.org/latest.tar.gz | sudo tar -xz --strip-components=1 -C $WP_DIR
+
 
 # Set permissions
 sudo chown www-data: $WP_DIR
