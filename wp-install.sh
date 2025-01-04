@@ -8,8 +8,21 @@ apt-get update
 apt-get upgrade -y
 
 # Install LAMP stack
-apt-get install -y apache2 mysql-server php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
-
+sudo apt install -y apache2 \
+                 ghostscript \
+                 libapache2-mod-php \
+                 mysql-server \
+                 php \
+                 php-bcmath \
+                 php-curl \
+                 php-imagick \
+                 php-intl \
+                 php-json \
+                 php-mbstring \
+                 php-mysql \
+                 php-xml \
+                 php-zip
+                 
 # Start services
 systemctl start apache2
 systemctl start mysql
