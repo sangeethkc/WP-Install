@@ -22,19 +22,17 @@ jobs:
       - name: Update package list and enable Apache and MySQL services
         run: sudo chmod +x ./update-packages.sh && ./update-packages.sh
 
-      - name: Download and extract WordPress
-        run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
-
-      - name: Create Apache virtual host configuration
-        run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
-
       - name: MySQL Configuration
         run: sudo chmod +x ./mysql-config.sh && ./mysql-config.sh
 
       - name: Create WordPress database and user
         run: chmod +x ./create-db.sh && ./create-db.sh
 
+      - name: Download and extract WordPress
+        run: sudo chmod +x ./wordpress.sh && ./wordpress.sh
 
+      - name: Create Apache virtual host configuration
+        run: sudo chmod +x ./apache-conf.sh && ./apache-conf.sh
 
       - name: Enable Apache rewrite module and site configuration
         run: sudo chmod +x ./apache-rewrite.sh && ./apache-rewrite.sh
