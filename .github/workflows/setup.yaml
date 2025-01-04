@@ -1,0 +1,23 @@
+name: Test WordPress Installation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  install-wordpress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Make Script Executable
+        run: chmod +x ./wp-install.sh
+
+      - name: Run WordPress Installation Script
+        run: sudo ./wp-install.sh
