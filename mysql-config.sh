@@ -18,12 +18,13 @@ until mysqladmin ping -h "127.0.0.1" --silent; do
 done
 echo "MySQL is ready!"
 
+mysql_secure_installation
 
 # Secure MySQL setup
 echo "Securing MySQL..."
 sudo mysql <<EOF
 CREATE USER '$DB_USER'@'localhost' IDENTIFIED WITH mysql_native_password BY '$DB_PASS';
-GRANT ALL ON *.* TO '$DB_USER'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON *.* TO '$DB_USER'@'localhost' WITH GRANT OPTION;
 quit;
 EOF
 
